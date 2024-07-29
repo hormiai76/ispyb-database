@@ -2,7 +2,7 @@ INSERT INTO SchemaStatus (scriptName, schemaStatus) VALUES ('2024_07_26_SSX_proc
 
 CREATE TABLE `SSXProcessingResult`(
     `ssxProcessingResultId` int(11) unsigned PRIMARY KEY COMMENT 'Primary key',
-    `datadcollectionId` int(11) unsigned,
+    `dataCollectionId` int(11) unsigned,
     `hitRate` float DEFAULT NULL,
     `indexingRate` float DEFAULT NULL,
     `indexingType` enum('Preliminary','Final') DEFAULT NULL,
