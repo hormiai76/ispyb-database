@@ -22,7 +22,7 @@ then
 fi
 
 echo "Dropping + creating build database"
-mysql --defaults-file=.my.cnf -e "DROP DATABASE IF EXISTS $DB; CREATE DATABASE $DB; SET GLOBAL log_bin_trust_function_creators=ON;"
+mysql --defaults-file=.my.cnf -e "DROP DATABASE IF EXISTS $DB; CREATE DATABASE $DB; SET GLOBAL log_bin_trust_function_creators=ON; USE $DB;"
 
 if [[ $? -eq 0 ]]
 then
@@ -31,15 +31,25 @@ then
   mysql --defaults-file=.my.cnf -D $DB < schema/3_data.sql
   if [ -z "${NO_USERPORTAL_DATA}" ]
   then
-    mysql --defaults-file=.my.cnf -D $DB < schema/4_data_user_portal.sql
     echo "Importing User Portal Data"
+    mysql --defaults-file=.my.cnf -D $DB < schema/4_data_user_portal.sql
+    echo "User Portal Data imported"
   fi
   mysql --defaults-file=.my.cnf -D $DB < schema/5_routines.sql
+  echo "Creating users to be used in the following import scripts"
+  mysql --defaults-file=.my.cnf -D $DB < grants/ispyb_users.sql
+  echo "User created"
+  echo "Importing Acquisition"
   mysql --defaults-file=.my.cnf -D $DB < grants/ispyb_acquisition.sql
+  echo "Acquisitions imported"
+  echo "Importing Processing"
   mysql --defaults-file=.my.cnf -D $DB < grants/ispyb_processing.sql
+  echo "Processing imported"
+  echo "Importing Web"
   mysql --defaults-file=.my.cnf -D $DB < grants/ispyb_web.sql
+  echo "Web imported"
   mysql --defaults-file=.my.cnf -D $DB < grants/ispyb_import.sql
-
+  echo "All grants scripts executed correctly"
   arr=$(${dir}/missed_updates.sh)
 
   if [ -n "$arr" ]; then
@@ -62,17 +72,25 @@ then
     echo "No new schema/updates/*.sql files."
   fi
 
+  echo "$PWD"
   # Generate table and sproc documentation
   if ! hash pandoc 2>/dev/null; then
     echo "'pandoc' was not found in PATH"
+    yum -y install pandoc
   elif [ -d "bin" ]; then
     cd bin
-    ./db_procs_to_rst.sh $DB > /tmp/list_of_procs.rst
-    pandoc -o /tmp/list_of_procs.html /tmp/list_of_procs.rst
-    ./db_tables_to_rst.sh $DB > /tmp/list_of_tables_and_columns.rst
-    pandoc -o /tmp/list_of_tables_and_columns.html /tmp/list_of_tables_and_columns.rst
-    echo "HTML documentation written to files in /tmp/"
+    if ! [ -d "/tmp/html" ]; then
+      mkdir "/tmp/html"
+    fi
+    ./db_procs_to_rst.sh $DB > /tmp/html/list_of_procs.rst
+    pandoc -o /tmp/html/list_of_procs.html /tmp/html/list_of_procs.rst
+    ./db_tables_to_rst.sh $DB > /tmp/html/list_of_tables_and_columns.rst
+    pandoc -o /tmp/html/list_of_tables_and_columns.html /tmp/html/list_of_tables_and_columns.rst
+    echo "HTML documentation written to files in /tmp/html/"
     cd ..
+    cp /tmp/html/*.html ./html/
+    cp /tmp/html/*.rst ./html/
+    echo "HTML documentation copied to the html folder"
   fi
 
 fi

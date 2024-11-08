@@ -1,0 +1,6 @@
+CREATE USER IF NOT EXISTS 'acquisition'@'%' IDENTIFIED BY 'acquisition';
+CREATE USER IF NOT EXISTS 'ispyb_web'@'%' IDENTIFIED BY 'ispyb_web';
+CREATE USER IF NOT EXISTS 'test'@'%' IDENTIFIED BY 'test';
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON * TO 'test'@'%';
+GRANT SHOW VIEW ON * TO 'test'@'%';
