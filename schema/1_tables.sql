@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.8.8-MariaDB, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: ispyb_build
 -- ------------------------------------------------------
--- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
+-- Server version	10.8.8-MariaDB-1:10.8.8+maria~ubu2204
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1562,7 +1562,7 @@ CREATE TABLE `DataCollectionGroup` (
   `blSampleId` int(10) unsigned DEFAULT NULL COMMENT 'references BLSample table',
   `sessionId` int(10) unsigned NOT NULL COMMENT 'references Session table',
   `workflowId` int(10) unsigned DEFAULT NULL,
-  `experimentType` enum('EM','SAD','SAD - Inverse Beam','OSC','Collect - Multiwedge','MAD','Helical','Multi-positional','Mesh','Burn','MAD - Inverse Beam','Characterization','Dehydration','Still','SSX-Chip','SSX-Jet') DEFAULT NULL,
+  `experimentType` enum('EM','SAD','SAD - Inverse Beam','OSC','Collect - Multiwedge','MAD','Helical','Multi-positional','Mesh','Burn','MAD - Inverse Beam','Characterization','Dehydration','Still','SSX-Chip','SSX-Jet','LineScan') DEFAULT NULL,
   `startTime` datetime DEFAULT NULL COMMENT 'Start time of the dataCollectionGroup',
   `endTime` datetime DEFAULT NULL COMMENT 'end time of the dataCollectionGroup',
   `crystalClass` varchar(20) DEFAULT NULL COMMENT 'Crystal Class for industrials users',
@@ -3782,6 +3782,50 @@ CREATE TABLE `SSXDataCollection` (
   PRIMARY KEY (`dataCollectionId`),
   CONSTRAINT `SSXDataCollection_ibfk_1` FOREIGN KEY (`dataCollectionId`) REFERENCES `DataCollection` (`dataCollectionId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Extends DataCollection with SSX-specific fields.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `SSXProcessingResult`
+--
+
+DROP TABLE IF EXISTS `SSXProcessingResult`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SSXProcessingResult` (
+  `ssxProcessingResultId` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary key',
+  `dataCollectionId` int(11) unsigned DEFAULT NULL,
+  `hitRate` float DEFAULT NULL,
+  `indexingRate` float DEFAULT NULL,
+  `indexingType` enum('Preliminary','Final') DEFAULT NULL,
+  `status` enum('Running','Failed','Success') DEFAULT NULL,
+  `createdTimeStamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lastUpdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'last update timestamp',
+  `comments` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ssxProcessingResultId`),
+  KEY `dataCollectionId` (`dataCollectionId`),
+  CONSTRAINT `SSXProcessingResult_ibfk_1` FOREIGN KEY (`dataCollectionId`) REFERENCES `DataCollection` (`dataCollectionId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Processing Results table for SSX experiments.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `SSXProcessingResultAttachment`
+--
+
+DROP TABLE IF EXISTS `SSXProcessingResultAttachment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SSXProcessingResultAttachment` (
+  `ssxProcessingResultAttachmentId` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Primary key',
+  `ssxProcessingResultId` int(11) unsigned DEFAULT NULL,
+  `fileName` varchar(255) NOT NULL,
+  `filePath` varchar(255) NOT NULL,
+  `fileType` enum('Result','Log','Graph') NOT NULL,
+  `createdTimeStamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `lastUpdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'last update timestamp',
+  PRIMARY KEY (`ssxProcessingResultAttachmentId`),
+  KEY `ssxProcessingResultId` (`ssxProcessingResultId`),
+  CONSTRAINT `SSXProcessingResultAttachment_ibfk_1` FOREIGN KEY (`ssxProcessingResultId`) REFERENCES `SSXProcessingResult` (`ssxProcessingResultId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Processing Results attachments table for SSX experiments.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
