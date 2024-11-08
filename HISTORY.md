@@ -19,3 +19,14 @@ Create new tables:
 -   Event
 
 Add `SSX-Chip` and `SSX-Jet` to `DataCollectionGroup.experimentType`.
+
+## 1.2.0
+
+Create new tables:
+
+-   SSXProcessingResult
+-   SSXProcessingResultAttachment
+
+## 1.2.3
+
+Add `LineScan` to `DataCollectionGroup.experimentType`.
