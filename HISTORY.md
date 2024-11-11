@@ -29,4 +29,4 @@ Create new tables:
 
 ## 1.2.3
 
-Add `LineScan` to `DataCollectionGroup.experimentType`.
+Add `LineScan` and `GphNative` to `DataCollectionGroup.experimentType`.
