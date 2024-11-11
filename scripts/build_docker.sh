@@ -76,7 +76,7 @@ then
   # Generate table and sproc documentation
   if ! hash pandoc 2>/dev/null; then
     echo "'pandoc' was not found in PATH"
-    yum -y install pandoc
+    apt-get install pandoc -y
   elif [ -d "bin" ]; then
     cd bin
     if ! [ -d "/tmp/html" ]; then
