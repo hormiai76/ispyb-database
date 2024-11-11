@@ -72,17 +72,25 @@ then
     echo "No new schema/updates/*.sql files."
   fi
 
+  echo "$PWD"
   # Generate table and sproc documentation
   if ! hash pandoc 2>/dev/null; then
     echo "'pandoc' was not found in PATH"
+    yum -y install pandoc
   elif [ -d "bin" ]; then
     cd bin
-    ./db_procs_to_rst.sh $DB > /tmp/list_of_procs.rst
-    pandoc -o /tmp/list_of_procs.html /tmp/list_of_procs.rst
-    ./db_tables_to_rst.sh $DB > /tmp/list_of_tables_and_columns.rst
-    pandoc -o /tmp/list_of_tables_and_columns.html /tmp/list_of_tables_and_columns.rst
-    echo "HTML documentation written to files in /tmp/"
+    if ! [ -d "/tmp/html" ]; then
+      mkdir "/tmp/html"
+    fi
+    ./db_procs_to_rst.sh $DB > /tmp/html/list_of_procs.rst
+    pandoc -o /tmp/html/list_of_procs.html /tmp/html/list_of_procs.rst
+    ./db_tables_to_rst.sh $DB > /tmp/html/list_of_tables_and_columns.rst
+    pandoc -o /tmp/html/list_of_tables_and_columns.html /tmp/html/list_of_tables_and_columns.rst
+    echo "HTML documentation written to files in /tmp/html/"
     cd ..
+    cp /tmp/html/*.html ./html/
+    cp /tmp/html/*.rst ./html/
+    echo "HTML documentation copied to the html folder"
   fi
 
 fi

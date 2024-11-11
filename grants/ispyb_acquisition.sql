@@ -1,5 +1,5 @@
 -- Create the acquisition role.
-CREATE ROLE IF NOT EXISTS acquisition;
+-- CREATE ROLE IF NOT EXISTS acquisition;
 
 -- You must also create a database user and grant this role to them, e.g.
 -- CREATE USER daiquiri_id21@'%' IDENTIFIED BY 'id21_password';

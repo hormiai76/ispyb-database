@@ -8,7 +8,7 @@ CREATE TABLE `SSXProcessingResult`(
     `indexingType` enum('Preliminary','Final') DEFAULT NULL,
     `status` enum('Running', 'Failed', 'Success') DEFAULT NULL,
     `createdTimeStamp` timestamp NOT NULL DEFAULT current_timestamp(),
-    `lastUpdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'last update timestamp',
+    `lastUpdate` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'last update timestamp',
     `comments` VARCHAR(100) NULL,
     FOREIGN KEY (`dataCollectionId`) REFERENCES `DataCollection`(`dataCollectionId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Processing Results table for SSX experiments.';
@@ -20,7 +20,7 @@ CREATE TABLE `SSXProcessingResultAttachment`(
     `filePath` varchar(255) NOT NULL,
     `fileType` enum('Result','Log', 'Graph') NOT NULL,
     `createdTimeStamp` timestamp NOT NULL DEFAULT current_timestamp(),
-    `lastUpdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'last update timestamp',
+    `lastUpdate` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'last update timestamp',
     FOREIGN KEY (`ssxProcessingResultId`) REFERENCES `SSXProcessingResult`(`ssxProcessingResultId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT = 'Processing Results attachments table for SSX experiments.';
 
