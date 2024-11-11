@@ -27,6 +27,10 @@ Create new tables:
 -   SSXProcessingResult
 -   SSXProcessingResultAttachment
 
-## 1.2.3
+## 1.2.2
 
 Add `LineScan` and `GphNative` to `DataCollectionGroup.experimentType`.
+
+## 1.2.3
+
+Update docker-compose file to use `MariaDB 10.11.9`.
