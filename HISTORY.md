@@ -34,3 +34,7 @@ Add `LineScan` and `GphNative` to `DataCollectionGroup.experimentType`.
 ## 1.2.3
 
 Update docker-compose file to use `MariaDB 10.11.9`.
+
+## 1.2.4
+
+Add `nbCrystals` to `SSXProcessingResult` table.
