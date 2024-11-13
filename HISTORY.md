@@ -30,3 +30,7 @@ Create new tables:
 ## 1.2.3
 
 Add `LineScan` and `GphNative` to `DataCollectionGroup.experimentType`.
+
+## 1.2.4
+
+Add `nbCrystals` to `SSXProcessingResult` table.
