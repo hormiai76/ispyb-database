@@ -22,7 +22,7 @@ This repository is mostly copied from [ispyb-database](https://github.com/Diamon
 
 ### Schema
 
-Tip: Execute `./build.sh` to create a development `ispyb_build` database and import all the schema and grants files into it.
+Tip: Execute `./build.sh` to create a development `test` database and import all the schema and grants files into it.
 
 Alternatively, do it manually:
 
@@ -86,5 +86,5 @@ mysql ispyb < grants/ispyb_import.sql
 
 ## Useful scripts
 
-* `scripts/build.sh`: Creates a development `ispyb_build` database and imports all the schema and grants files into it.
+* `scripts/build.sh`: Creates a development `test` database and imports all the schema and grants files into it.
 * `scripts/missed_updates.sh`: Generates a list of files in the `schema/updates/` folder that haven't been applied.

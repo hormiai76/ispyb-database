@@ -18,7 +18,7 @@ source ${dir}/functions.sh
 
 if [ -z "${DB}" ]
 then
-  DB="ispyb_build"
+  DB="test"
 fi
 
 echo "Dropping + creating build database"

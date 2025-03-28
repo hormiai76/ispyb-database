@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ispyb_build
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
 
@@ -171,7 +171,10 @@ INSERT INTO `AutoProcProgramAttachment` (`autoProcProgramAttachmentId`, `autoPro
 
 /*!40000 ALTER TABLE `BLSample` DISABLE KEYS */;
 INSERT INTO `BLSample` (`blSampleId`, `diffractionPlanId`, `crystalId`, `containerId`, `name`, `code`, `location`, `holderLength`, `loopLength`, `loopType`, `wireWidth`, `comments`, `completionStage`, `structureStage`, `publicationStage`, `publicationComments`, `blSampleStatus`, `isInSampleChanger`, `lastKnownCenteringPosition`, `recordTimeStamp`, `SMILES`, `lastImageURL`, `positionId`, `blSubSampleId`, `screenComponentGroupId`, `volume`, `dimension1`, `dimension2`, `dimension3`, `shape`, `subLocation`) VALUES (1,NULL,1,1,'sample1',NULL,'1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-06-16 13:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `BLSample` (`blSampleId`, `diffractionPlanId`, `crystalId`, `containerId`, `name`, `code`, `location`, `holderLength`, `loopLength`, `loopType`, `wireWidth`, `comments`, `completionStage`, `structureStage`, `publicationStage`, `publicationComments`, `blSampleStatus`, `isInSampleChanger`, `lastKnownCenteringPosition`, `recordTimeStamp`, `SMILES`, `lastImageURL`, `positionId`, `blSubSampleId`, `screenComponentGroupId`, `volume`, `dimension1`, `dimension2`, `dimension3`, `shape`, `subLocation`) VALUES (2,NULL,1,2,'sample2',NULL,'2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-06-16 13:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*!40000 ALTER TABLE `BLSample` ENABLE KEYS */;
+
 
 --
 -- Dumping data for table `BLSampleGroup`
@@ -252,6 +255,7 @@ INSERT INTO `BLSession` (`sessionId`, `expSessionPk`, `beamLineSetupId`, `propos
 INSERT INTO `BLSubSample` (`blSubSampleId`, `blSampleId`, `diffractionPlanId`, `positionId`, `position2Id`, `blSubSampleUUID`, `imgFileName`, `imgFilePath`, `comments`, `recordTimeStamp`, `motorPositionId`) VALUES (1,1,NULL,2,3,NULL,NULL,NULL,NULL,'2020-06-16 13:43:22',NULL),
 (2,1,NULL,4,NULL,NULL,NULL,NULL,NULL,'2020-06-16 13:57:47',NULL),
 (3,1,NULL,5,6,NULL,NULL,NULL,NULL,'2020-06-16 13:57:49',NULL);
+INSERT INTO `BLSubSample` (`blSubSampleId`, `blSampleId`, `diffractionPlanId`, `positionId`, `position2Id`, `blSubSampleUUID`, `imgFileName`, `imgFilePath`, `comments`, `recordTimeStamp`, `motorPositionId`) VALUES (4,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-06-16 13:43:22',NULL);
 /*!40000 ALTER TABLE `BLSubSample` ENABLE KEYS */;
 
 --
@@ -337,7 +341,9 @@ INSERT INTO `BLSubSample` (`blSubSampleId`, `blSampleId`, `diffractionPlanId`, `
 
 /*!40000 ALTER TABLE `Container` DISABLE KEYS */;
 INSERT INTO `Container` (`containerId`, `dewarId`, `code`, `containerType`, `capacity`, `beamlineLocation`, `sampleChangerLocation`, `containerStatus`, `bltimeStamp`, `barcode`, `sessionId`, `ownerId`, `screenId`, `scheduleId`, `imagerId`, `scLocationUpdated`, `requestedImagerId`, `requestedReturn`, `comments`, `experimentType`, `storageTemperature`) VALUES (1,1,'blc00001-1_Container1','Box',25,'bl','1','processing','2020-06-16 15:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL);
+INSERT INTO `Container` (`containerId`, `dewarId`, `code`, `containerType`, `capacity`, `beamlineLocation`, `sampleChangerLocation`, `containerStatus`, `bltimeStamp`, `barcode`, `sessionId`, `ownerId`, `screenId`, `scheduleId`, `imagerId`, `scLocationUpdated`, `requestedImagerId`, `requestedReturn`, `comments`, `experimentType`, `storageTemperature`) VALUES (2,2,'blc00001-1_Container2','Box',25,'bl','1','processing','2020-06-16 15:42:44',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Container` ENABLE KEYS */;
+
 
 --
 -- Dumping data for table `ContainerHistory`
@@ -457,6 +463,7 @@ INSERT INTO `DataCollectionGroup` (`dataCollectionGroupId`, `blSampleId`, `sessi
 
 /*!40000 ALTER TABLE `Dewar` DISABLE KEYS */;
 INSERT INTO `Dewar` (`dewarId`, `shippingId`, `code`, `comments`, `storageLocation`, `dewarStatus`, `bltimeStamp`, `isStorageDewar`, `barCode`, `firstExperimentId`, `customsValue`, `transportValue`, `trackingNumberToSynchrotron`, `trackingNumberFromSynchrotron`, `facilityCode`, `type`, `isReimbursed`) VALUES (1,1,'blc00001-1_Dewar1',NULL,NULL,'processing','2020-06-16 15:45:45',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dewar',0);
+INSERT INTO `Dewar` (`dewarId`, `shippingId`, `code`, `comments`, `storageLocation`, `dewarStatus`, `bltimeStamp`, `isStorageDewar`, `barCode`, `firstExperimentId`, `customsValue`, `transportValue`, `trackingNumberToSynchrotron`, `trackingNumberFromSynchrotron`, `facilityCode`, `type`, `isReimbursed`) VALUES (2,2,'blc00001-2_Dewar2',NULL,NULL,'processing','2020-06-16 15:45:45',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dewar',0);
 /*!40000 ALTER TABLE `Dewar` ENABLE KEYS */;
 
 --
@@ -1245,7 +1252,9 @@ INSERT INTO `Session_has_Person` (`sessionId`, `personId`, `role`, `remote`) VAL
 
 /*!40000 ALTER TABLE `Shipping` DISABLE KEYS */;
 INSERT INTO `Shipping` (`shippingId`, `proposalId`, `shippingName`, `deliveryAgent_agentName`, `deliveryAgent_shippingDate`, `deliveryAgent_deliveryDate`, `deliveryAgent_agentCode`, `deliveryAgent_flightCode`, `shippingStatus`, `bltimeStamp`, `laboratoryId`, `isStorageShipping`, `creationDate`, `comments`, `sendingLabContactId`, `returnLabContactId`, `returnCourier`, `dateOfShippingToUser`, `shippingType`, `safetyLevel`) VALUES (1,1,'blc00001-1_Shipment1',NULL,NULL,NULL,NULL,NULL,NULL,'2020-06-16 15:42:44',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `Shipping` (`shippingId`, `proposalId`, `shippingName`, `deliveryAgent_agentName`, `deliveryAgent_shippingDate`, `deliveryAgent_deliveryDate`, `deliveryAgent_agentCode`, `deliveryAgent_flightCode`, `shippingStatus`, `bltimeStamp`, `laboratoryId`, `isStorageShipping`, `creationDate`, `comments`, `sendingLabContactId`, `returnLabContactId`, `returnCourier`, `dateOfShippingToUser`, `shippingType`, `safetyLevel`) VALUES (2,1,'blc00001-2_Shipment2',NULL,NULL,NULL,NULL,NULL,NULL,'2020-06-16 15:42:44',NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `Shipping` ENABLE KEYS */;
+
 
 --
 -- Dumping data for table `ShippingHasSession`

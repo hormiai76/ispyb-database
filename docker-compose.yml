@@ -1,10 +1,11 @@
-version: '3.3'
 services:
-  ispyb_build:
-    image: mariadb:10.11.9
-    container_name: ispyb_build
+  pydb-test:
+    image: harbor.maxiv.lu.se/dockerhub/library/mariadb:10.11.11
+    container_name: pydb-test
+    post_start:
+      - command: sh -c "sleep 10 && /var/local/ispyb-database/scripts/build_docker.sh"
     environment:
-      MYSQL_DATABASE: 'ispyb_build'
+      MYSQL_DATABASE: 'test'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'test'
       # You can use whatever password you like

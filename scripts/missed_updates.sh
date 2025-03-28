@@ -3,7 +3,7 @@
 # Get the database name
 if [ -z "${DB}" ]
 then
-  DB="ispyb_build"
+  DB="test"
 fi
 
 # Get this scripts dir

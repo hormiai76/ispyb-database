@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ispyb_build
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
 
@@ -15,7 +15,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping routines for database 'ispyb_build'
+-- Dumping routines for database 'test'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -29,7 +29,7 @@
 -- Dump completed
 -- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ispyb_build
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
 

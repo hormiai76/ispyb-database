@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: ispyb_build
+-- Host: 127.0.0.1    Database: test
 -- ------------------------------------------------------
 -- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
 
