@@ -1,8 +1,9 @@
 services:
-  pydb-test:
-    #image: mariadb:10.11.11
-    build: .
-    container_name: pydb-test
+  pydb-test-local:
+    image: harbor.maxiv.lu.se/dockerhub/library/mariadb:10.11.11
+    container_name: pydb-test-local
+    post_start:
+      - command: sh -c "sleep 10 && /var/local/ispyb-database/scripts/build_docker_local.sh"
     environment:
       MYSQL_DATABASE: 'test'
       # So you don't have to use root, but you can if you like
@@ -17,3 +18,8 @@ services:
     expose:
       # Opens port 3306 on the container
       - '3306'
+      # Where our data will be persisted
+    volumes:
+      - /var/local/mariadb/:/var/lib/mysql:rw
+      - ./:/var/local/ispyb-database:rw
+      - ./examples/.my.cnf:/var/local/ispyb-database/scripts/.my.cnf:ro
