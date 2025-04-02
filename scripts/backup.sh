@@ -12,7 +12,7 @@ OUT_DIR=$1
 
 if [ -z "${DB}" ]
 then
-  DB="ispyb_build"
+  DB="test"
 fi
 
 # Note: --defaults-file must be given as first option
