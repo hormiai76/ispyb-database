@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.8.6-MariaDB, for Linux (x86_64)
+-- MariaDB dump 10.19  Distrib 10.8.8-MariaDB, for Linux (x86_64)
 --
 -- Host: 127.0.0.1    Database: ispyb_build
 -- ------------------------------------------------------
--- Server version	10.8.6-MariaDB-1:10.8.6+maria~ubu2204
+-- Server version	10.8.8-MariaDB-1:10.8.8+maria~ubu2204
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1090,6 +1090,20 @@ INSERT INTO `Protein` (`proteinId`, `proposalId`, `name`, `acronym`, `descriptio
 
 /*!40000 ALTER TABLE `SSXDataCollection` DISABLE KEYS */;
 /*!40000 ALTER TABLE `SSXDataCollection` ENABLE KEYS */;
+
+--
+-- Dumping data for table `SSXProcessingResult`
+--
+
+/*!40000 ALTER TABLE `SSXProcessingResult` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SSXProcessingResult` ENABLE KEYS */;
+
+--
+-- Dumping data for table `SSXProcessingResultAttachment`
+--
+
+/*!40000 ALTER TABLE `SSXProcessingResultAttachment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SSXProcessingResultAttachment` ENABLE KEYS */;
 
 --
 -- Dumping data for table `SW_onceToken`
