@@ -119,8 +119,8 @@ then
     pandoc -o /tmp/html/list_of_tables_and_columns.html /tmp/html/list_of_tables_and_columns.rst
     echo "HTML documentation written to files in /tmp/html/"
     cd ..
-    cp /tmp/html/*.html ./html/
-    cp /tmp/html/*.rst ./html/
+    cp /tmp/html/*.html /var/local/ispyb-database/html/
+    cp /tmp/html/*.rst /var/local/ispyb-database/html/
     echo "HTML documentation copied to the html folder"
   fi
 
