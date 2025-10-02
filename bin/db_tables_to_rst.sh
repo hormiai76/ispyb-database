@@ -3,8 +3,10 @@
 db=$1
 
 file=$(mktemp /tmp/html/tsv.XXXXXX)
+dir=$(dirname $(realpath ${0}))
+echo $dir
 
-mysql --defaults-file=../.my.cnf -D $db --skip-column-names --batch --raw < sql/db_tables_to_tsv.sql > ${file}
+mysql --defaults-file=$dir/../scripts/.my.cnf -D $db --skip-column-names --batch --raw < $dir/sql/db_tables_to_tsv.sql > ${file}
 sed -i 's/\t/,/g' ${file}
 
 echo ".. csv-table:: Tables, columns and comments"

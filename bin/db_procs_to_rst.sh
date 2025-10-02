@@ -6,7 +6,7 @@ file=$(mktemp /tmp/html/tsv.XXXXXX)
 dir=$(dirname $(realpath ${0}))
 echo $dir
 # Execute the sql to generate the csv outfile
-mysql --defaults-file=../.my.cnf --skip-column-names --batch --raw -D $db < $dir/sql/db_procs_to_tsv.sql  > ${file}
+mysql --defaults-file=$dir/../scripts/.my.cnf --skip-column-names --batch --raw -D $db < $dir/sql/db_procs_to_tsv.sql  > ${file}
 
 # Construct rst file with csv table
 echo ".. csv-table:: Procedure signatures with comments"
