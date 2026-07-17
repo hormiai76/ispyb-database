@@ -3,7 +3,7 @@
 
 USE `pydb`;
 -- first line of script
-insert into SchemaStatus (scriptName, schemaStatus) values ('2016_11_18_2_CreateRobotAction','ONGOING');
+insert into SchemaStatus (scriptName, schemaStatus) values ('2016_11_18_2_CreateRobotAction.sql','ONGOING');
 
 -- body of the script
 
@@ -29,5 +29,5 @@ CREATE TABLE `RobotAction` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Robot actions as reported by MXCube';
 
 -- last line of script
-update SchemaStatus set schemaStatus = 'DONE' where scriptName = '2016_11_18_2_CreateRobotAction';
+update SchemaStatus set schemaStatus = 'DONE' where scriptName = '2016_11_18_2_CreateRobotAction.sql';
 

@@ -3,7 +3,7 @@
 
 USE `pydb`;
 -- first line of script
-insert into SchemaStatus (scriptName, schemaStatus) values ('2016_11_18_1_CreateComponentType','ONGOING');
+insert into SchemaStatus (scriptName, schemaStatus) values ('2016_11_18_1_CreateComponentType.sql','ONGOING');
 
 -- body of the script
 
@@ -22,5 +22,5 @@ INSERT INTO `ComponentType` (`componentTypeId`,`name`) VALUES (4,'RNA');
 
 
 -- last line of script
-update SchemaStatus set schemaStatus = 'DONE' where scriptName = '2016_11_18_1_CreateComponentType';
+update SchemaStatus set schemaStatus = 'DONE' where scriptName = '2016_11_18_1_CreateComponentType.sql';
 
